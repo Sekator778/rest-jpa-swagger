@@ -1,22 +1,22 @@
 package com.example.bookjpa.domain;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 @Entity
 @Data
 @NoArgsConstructor
 public class Book {
     @NotNull
     @Id
-        @GeneratedValue(generator = "system-uuid")
-        @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     @NotNull
     @NotBlank
@@ -29,6 +29,7 @@ public class Book {
     public Book(String description) {
         this.description = description;
     }
+
     @PrePersist
     void onCreate() {
         this.setCreated(LocalDateTime.now());
