@@ -22,8 +22,8 @@ public class BookBuilder {
         return instance;
     }
 
-    public Book build() {
-        Book result = new Book(this.description);
+    public BookEntity build() {
+        BookEntity result = new BookEntity(this.description);
         if (id != null) {
             result.setId(id);
         }

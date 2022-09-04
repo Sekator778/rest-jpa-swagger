@@ -1,8 +1,8 @@
 package com.example.bookjpa.repository;
 
-import com.example.bookjpa.domain.Book;
+import com.example.bookjpa.domain.BookEntity;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface BookRepository extends CrudRepository<Book, String> {
+public interface BookRepository extends CrudRepository<BookEntity, String> {
 }

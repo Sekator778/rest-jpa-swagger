@@ -1,6 +1,6 @@
 package com.example.bookjpa.controller;
 
-import com.example.bookjpa.domain.Book;
+import com.example.bookjpa.domain.BookEntity;
 import com.example.bookjpa.domain.BookBuilder;
 import com.example.bookjpa.repository.BookRepository;
 import com.example.bookjpa.validation.BookValidationError;
@@ -37,27 +37,27 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public ResponseEntity<Iterable<Book>> getBooks() {
+    public ResponseEntity<Iterable<BookEntity>> getBooks() {
         log.info("used get mapping to /book");
         return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable String id) {
+    public ResponseEntity<BookEntity> getBookById(@PathVariable String id) {
         log.info("method get book by id used");
-        Optional<Book> book = repository.findById(id);
+        Optional<BookEntity> book = repository.findById(id);
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/book/{id}")
-    public ResponseEntity<Book> setCompleted(@PathVariable String id) {
+    public ResponseEntity<BookEntity> setCompleted(@PathVariable String id) {
         log.info("method set or update book by id used");
-        Optional<Book> book = repository.findById(id);
+        Optional<BookEntity> book = repository.findById(id);
        if (book.isEmpty()) {
            log.warn("{} - its incorrect id check input", id);
            return ResponseEntity.notFound().build();
        }
-       Book result = book.get();
+       BookEntity result = book.get();
        result.setCompleted(true);
        repository.save(result);
         URI location = ServletUriComponentsBuilder
@@ -71,13 +71,13 @@ public class BookController {
     }
 
     @RequestMapping(value = "/book", method = {RequestMethod.POST, RequestMethod.PUT})
-    public ResponseEntity<?> createBook(@Valid @RequestBody Book book, Errors errors) {
+    public ResponseEntity<?> createBook(@Valid @RequestBody BookEntity bookEntity, Errors errors) {
         if (errors.hasErrors()) {
             log.warn("not created its has errors");
             return ResponseEntity.badRequest()
                     .body(BookValidationErrorBuilder.fromBindingErrors(errors));
         }
-        Book result = repository.save(book);
+        BookEntity result = repository.save(bookEntity);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(result.getId())
@@ -88,16 +88,16 @@ public class BookController {
     }
 
     @DeleteMapping("/book/{id}")
-    public ResponseEntity<Book> deleteBook(@PathVariable String id) {
+    public ResponseEntity<BookEntity> deleteBook(@PathVariable String id) {
         repository.delete(BookBuilder.create().withId(id).build());
         log.info("book with id - {} has deleted", id);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/book")
-    public ResponseEntity<Book> deleteBook(@RequestBody Book book) {
-        repository.delete(book);
-        log.info("book deleted {}", book);
+    public ResponseEntity<BookEntity> deleteBook(@RequestBody BookEntity bookEntity) {
+        repository.delete(bookEntity);
+        log.info("book deleted {}", bookEntity);
         return ResponseEntity.noContent().build();
     }
 

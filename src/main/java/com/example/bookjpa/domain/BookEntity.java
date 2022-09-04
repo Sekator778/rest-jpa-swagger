@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
-public class Book {
+public class BookEntity {
     @NotNull
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -27,7 +27,7 @@ public class Book {
     private LocalDateTime modified;
     private boolean completed;
 
-    public Book(String description) {
+    public BookEntity(String description) {
         this.description = description;
         log.info("constructor class Book has created");
     }
