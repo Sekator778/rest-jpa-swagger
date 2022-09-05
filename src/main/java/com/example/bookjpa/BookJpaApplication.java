@@ -29,7 +29,7 @@ public class BookJpaApplication {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title(buildProperties.getArtifact() + " API")
+                        .title(buildProperties.getArtifact() + " API by mentor SHPP")
                         .version(buildProperties.getVersion())
                         .description(buildProperties.getArtifact() + " - API Swagger documentation")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
