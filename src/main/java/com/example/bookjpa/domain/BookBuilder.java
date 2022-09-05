@@ -18,7 +18,7 @@ public class BookBuilder {
     }
 
     public BookBuilder withId(String id) {
-        this.description = id;
+        this.id = id;
         return instance;
     }
 

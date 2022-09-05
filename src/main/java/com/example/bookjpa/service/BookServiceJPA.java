@@ -66,7 +66,10 @@ public class BookServiceJPA implements BookService {
     @Override
     public void delete(BookEntity bookEntity) {
         repository.delete(bookEntity);
-
+    }
+    @Override
+    public void deleteWithId(String id) {
+        repository.deleteById(id);
     }
 
     @Override

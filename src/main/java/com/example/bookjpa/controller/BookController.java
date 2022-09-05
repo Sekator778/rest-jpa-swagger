@@ -3,14 +3,11 @@ package com.example.bookjpa.controller;
 import com.example.bookjpa.domain.BookBuilder;
 import com.example.bookjpa.domain.BookEntity;
 import com.example.bookjpa.service.BookService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +27,6 @@ import java.util.Optional;
  * for swagger use -<a href="http://localhost:port/swagger-ui/index.html">...</a>
  */
 @Slf4j
-//@OpenAPIDefinition
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -105,6 +101,7 @@ public class BookController {
     @DeleteMapping("/book/{id}")
     public ResponseEntity<BookEntity> deleteBook(@PathVariable String id) {
         service.delete(BookBuilder.create().withId(id).build());
+//        service.deleteWithId(id);
         log.info("book with id - {} has deleted", id);
         return ResponseEntity.noContent().build();
     }
