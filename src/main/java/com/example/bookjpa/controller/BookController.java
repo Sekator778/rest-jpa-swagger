@@ -5,6 +5,7 @@ import com.example.bookjpa.domain.BookEntity;
 import com.example.bookjpa.service.BookService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,8 +30,7 @@ import java.util.Optional;
  * for swagger use -<a href="http://localhost:port/swagger-ui/index.html">...</a>
  */
 @Slf4j
-@OpenAPIDefinition()
-@Tag(name = "Demo rest api with jpa mentor course SHPP", description = "v: 1.0")
+//@OpenAPIDefinition
 @RestController
 @RequestMapping("/api")
 public class BookController {
