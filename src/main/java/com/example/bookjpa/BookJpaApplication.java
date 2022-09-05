@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @PropertySources({
-        @PropertySource(value = "file:app.properties", ignoreResourceNotFound = true)
+        @PropertySource(value = "file:/app.properties", ignoreResourceNotFound = true)
 })
 public class BookJpaApplication {
 
