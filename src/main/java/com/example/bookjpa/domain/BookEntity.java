@@ -15,9 +15,8 @@ public class BookEntity {
     private final static Logger log = LoggerFactory.getLogger(BookEntity.class);
     @NotNull(message = "id must be present")
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     @NotNull
     @NotBlank(message = "Description is mandatory")
     @Column(insertable = true, updatable = false)
@@ -47,13 +46,6 @@ public class BookEntity {
         log.info("method PreUpdate use");
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -87,6 +79,14 @@ public class BookEntity {
         this.completed = completed;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,8 +94,8 @@ public class BookEntity {
 
         BookEntity that = (BookEntity) o;
 
+        if (id != that.id) return false;
         if (completed != that.completed) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (created != null ? !created.equals(that.created) : that.created != null) return false;
         return modified != null ? modified.equals(that.modified) : that.modified == null;
@@ -103,7 +103,7 @@ public class BookEntity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (modified != null ? modified.hashCode() : 0);

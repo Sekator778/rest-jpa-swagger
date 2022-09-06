@@ -1,14 +1,10 @@
 package com.example.bookjpa;
 
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.info.BuildProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
@@ -18,20 +14,11 @@ import org.springframework.context.annotation.PropertySources;
 })
 @RequiredArgsConstructor
 public class BookJpaApplication {
-    private final BuildProperties buildProperties;
+    private static final Logger log = LoggerFactory.getLogger(BookJpaApplication.class);
 
     public static void main(String[] args) {
+        log.info("main init");
         SpringApplication.run(BookJpaApplication.class, args);
-    }
-
-    @Bean
-    OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .components(new Components())
-                .info(new Info()
-                        .title(buildProperties.getArtifact() + " API by mentor SHPP")
-                        .version(buildProperties.getVersion())
-                        .description(buildProperties.getArtifact() + " - API Swagger documentation")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+        log.info("main done");
     }
 }
