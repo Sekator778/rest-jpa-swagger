@@ -41,7 +41,7 @@ public class BookServiceJPA implements BookService {
 
 
     @Override
-    public ResponseEntity<?> save(BookEntity bookEntity) {
+    public ResponseEntity<BookEntity> save(BookEntity bookEntity) {
         Set<ConstraintViolation<BookEntity>> violations = validator.validate(bookEntity);
         if (!violations.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -50,7 +50,6 @@ public class BookServiceJPA implements BookService {
             }
             LOG.info("the model was not inserted into the database because it did not pass validation");
             throw new ConstraintViolationException("Error occurred: " + stringBuilder, violations);
-
         }
         LOG.info("model save to DB with id {}", bookEntity.getId());
         BookEntity result = repository.save(bookEntity);

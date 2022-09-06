@@ -1,8 +1,5 @@
 package com.example.bookjpa.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.GenericGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

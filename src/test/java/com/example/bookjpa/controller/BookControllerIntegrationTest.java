@@ -75,15 +75,15 @@ public class BookControllerIntegrationTest {
 
     }
 
-//    @Test
-//    public void whenPostRequestToUsersAndInValidUser_thenCorrectResponse() throws Exception {
-//        String book = "{}";
-//        mockMvc.perform(MockMvcRequestBuilders.post("/api/book")
-//                        .content(book)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("Description is mandatory")))
-//                .andExpect(MockMvcResultMatchers.content()
-//                        .contentType(MediaType.APPLICATION_JSON));
-//    }
+    @Test
+    public void whenPostRequestToUsersAndInValidUser_thenCorrectResponse() throws Exception {
+        String book = "{}";
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/book")
+                        .content(book)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("Description is mandatory")))
+                .andExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON));
+    }
 }

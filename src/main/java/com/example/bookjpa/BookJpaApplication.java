@@ -4,7 +4,7 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.info.BuildProperties;
@@ -16,9 +16,9 @@ import org.springframework.context.annotation.PropertySources;
 @PropertySources({
         @PropertySource(value = "file:/app.properties", ignoreResourceNotFound = true)
 })
+@RequiredArgsConstructor
 public class BookJpaApplication {
-    @Autowired
-    private BuildProperties buildProperties;
+    private final BuildProperties buildProperties;
 
     public static void main(String[] args) {
         SpringApplication.run(BookJpaApplication.class, args);
