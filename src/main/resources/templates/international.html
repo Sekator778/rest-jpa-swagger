@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
-<meta charset="ISO-8859-1" />
-<title>Internationalization</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="/static/internationalization.js"></script>
+    <meta charset="ISO-8859-1"/>
+    <title>Internationalization</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/static/internationalization.js"></script>
 </head>
 <body>
 <h1 th:text="#{greeting}"></h1>
 
-<br /><br />
+
 <span th:text="#{lang.change}"></span>:
+<label for="locales"></label>
 <select id="locales">
     <option value=""></option>
     <option value="ua" th:text="#{lang.ua}"></option>

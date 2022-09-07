@@ -9,18 +9,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+/**
+ * this class configure swagger view where
+ * add pom version
+ */
 @Configuration
-public class MvcConfigurer implements WebMvcConfigurer {
-    private final Logger log = LoggerFactory.getLogger(MvcConfigurer.class);
+public class OpenApiConfig {
+    private final Logger log = LoggerFactory.getLogger(OpenApiConfig.class);
     private final BuildProperties buildProperties;
 
-    public MvcConfigurer(BuildProperties buildProperties) {
+    public OpenApiConfig(BuildProperties buildProperties) {
         this.buildProperties = buildProperties;
     }
 
@@ -34,22 +33,5 @@ public class MvcConfigurer implements WebMvcConfigurer {
                         .version(buildProperties.getVersion())
                         .description(buildProperties.getArtifact() + " - API Swagger documentation")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
-    }
-
-    @Bean
-    public LocaleResolver localeResolver() {
-        return new CookieLocaleResolver();
-    }
-
-    @Bean
-    public LocaleChangeInterceptor localeInterceptor() {
-        LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
-        localeInterceptor.setParamName("lang");
-        return localeInterceptor;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeInterceptor());
     }
 }

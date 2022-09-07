@@ -3,14 +3,11 @@ package com.example.bookjpa.controller;
 import com.example.bookjpa.domain.BookBuilder;
 import com.example.bookjpa.domain.BookEntity;
 import com.example.bookjpa.service.BookService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,14 +48,14 @@ public class BookController {
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<BookEntity> getBookById(@PathVariable String id) {
+    public ResponseEntity<BookEntity> getBookById(@PathVariable int id) {
         log.info("method get book by id used");
         Optional<BookEntity> book = service.findById(id);
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/book/{id}")
-    public ResponseEntity<BookEntity> setCompleted(@PathVariable String id) {
+    public ResponseEntity<BookEntity> setCompleted(@PathVariable int id) {
         log.info("method set or update book by id used");
         Optional<BookEntity> book = service.findById(id);
         if (book.isEmpty()) {

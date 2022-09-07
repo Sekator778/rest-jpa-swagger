@@ -66,8 +66,9 @@ public class BookServiceJPA implements BookService {
     public void delete(BookEntity bookEntity) {
         repository.delete(bookEntity);
     }
+
     @Override
-    public void deleteWithId(String id) {
+    public void deleteWithId(Integer id) {
         repository.deleteById(id);
     }
 
@@ -77,7 +78,7 @@ public class BookServiceJPA implements BookService {
     }
 
     @Override
-    public Optional<BookEntity> findById(String id) {
+    public Optional<BookEntity> findById(Integer id) {
         return repository.findById(id);
     }
 

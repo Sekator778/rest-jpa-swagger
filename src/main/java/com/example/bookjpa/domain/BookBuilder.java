@@ -2,7 +2,7 @@ package com.example.bookjpa.domain;
 
 public class BookBuilder {
     private static BookBuilder instance = new BookBuilder();
-    private int id = 0;
+    private Integer id = 0;
     private String description = "";
 
     private BookBuilder() {
@@ -17,7 +17,7 @@ public class BookBuilder {
         return instance;
     }
 
-    public BookBuilder withId(int id) {
+    public BookBuilder withId(Integer id) {
         this.id = id;
         return instance;
     }

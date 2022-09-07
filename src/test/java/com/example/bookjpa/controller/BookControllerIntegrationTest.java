@@ -62,10 +62,9 @@ public class BookControllerIntegrationTest {
     public void whenPostRequestToUsersAndValidUser_thenCorrectResponse() throws Exception {
         MediaType textPlainUtf8 = new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8);
         String book = "{\n" +
-                "  \"id\": \"string\",\n" +
-                "  \"description\": \"string\",\n" +
-                "  \"created\": \"2022-09-05T13:22:08.772Z\",\n" +
-                "  \"modified\": \"2022-09-05T13:22:08.772Z\",\n" +
+                "  \"description\": \"string other book\",\n" +
+                "  \"created\": \"2022-09-07T08:52:06.618Z\",\n" +
+                "  \"modified\": \"2022-09-07T08:52:06.618Z\",\n" +
                 "  \"completed\": true\n" +
                 "}";
         mockMvc.perform(MockMvcRequestBuilders.post("/api/book")
@@ -82,7 +81,7 @@ public class BookControllerIntegrationTest {
                         .content(book)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("Description is mandatory")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("text is mandatory")))
                 .andExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON));
     }

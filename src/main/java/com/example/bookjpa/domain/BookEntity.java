@@ -7,18 +7,20 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "book")
 public class BookEntity {
     private final static Logger log = LoggerFactory.getLogger(BookEntity.class);
-    @NotNull(message = "id must be present")
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @NotNull
-    @NotBlank(message = "Description is mandatory")
+    @NotBlank(message = "{description.text}")
+    @Size(min = 3, max = 30, message = "{desc-length.text}")
     @Column(insertable = true, updatable = false)
     private String description;
     private LocalDateTime created;
@@ -79,11 +81,11 @@ public class BookEntity {
         this.completed = completed;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -94,8 +96,8 @@ public class BookEntity {
 
         BookEntity that = (BookEntity) o;
 
-        if (id != that.id) return false;
         if (completed != that.completed) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (created != null ? !created.equals(that.created) : that.created != null) return false;
         return modified != null ? modified.equals(that.modified) : that.modified == null;
@@ -103,7 +105,7 @@ public class BookEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (modified != null ? modified.hashCode() : 0);

@@ -15,6 +15,8 @@
     <description>bookEntity-jpa</description>
     <properties>
         <java.version>11</java.version>
+        <spring-security.version>5.7.3</spring-security.version>
+        <spring.version>5.2.8.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -81,6 +83,13 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>3.0.6</version>
         </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.mongodb</groupId>-->
+<!--            <artifactId>mongo-java-driver</artifactId>-->
+<!--            <version>3.12.11</version>-->
+<!--        </dependency>-->
+
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
@@ -100,6 +109,11 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
+        </dependency>
+<!--        security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
